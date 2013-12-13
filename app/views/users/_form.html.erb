@@ -1,0 +1,40 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2 style="text-align: center">有以下<%= pluralize(@user.errors.count,"项错误") %>，请检查！</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <table>
+       <div class="span4">
+          <tr>
+            <td>登录账号：</td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+         <tr>
+          <td>登录密码：</td>
+          <td><%= f.password_field :password %></td>
+        </tr>
+          <tr>
+            <td>确认密码：</td>
+            <td><%= f.password_field :password_confirmation %></td>
+          </tr>
+          <tr>
+            <td>真实姓名：</td>
+            <td><%= f.text_field :username %></td>
+          </tr>
+          <tr>
+            <td>出生日期：</td>
+            <td><%= f.text_field :birthday %></td>
+          </tr>
+         <tr>
+            <td style="text-align: right"><%= f.submit '注册', class:'btn btn-success' %></td>
+            <td style="text-align: center"><%= link_to '返回' , store_url, class:'btn btn-primary' %></td>
+         </tr>
+       </div>
+   </table>
+<% end %>

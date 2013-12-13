@@ -1,0 +1,23 @@
+<% provide(:title,'首页') %>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<% @products.each do |product| %>
+    <div class="entry">
+      <%= image_tag(product.image_url,size:'120x150') %>
+      <h4><%= product.title %></h4>
+      <td style="width: 300px">&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= product.description %></td>
+      <div class="price_line">
+        <span class="price">
+          ￥:<%= product.price %>元
+          <%= button_to '加入购物车', line_items_path(:product_id => product) ,
+                        :class=>'btn btn-warning', :remote=>true, :confirm=>'确定购买该产品么？' %>
+        </span>
+      </div>
+    </div>
+    <td style="color: red">
+-----------------------------------------------------------------------------------------
+    </td>
+<% end %>
+<p style="text-align: center"><%= will_paginate @products , :previous_label=> '上一页',:next_label=> '下一页' %></p>

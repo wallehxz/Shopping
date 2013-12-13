@@ -1,0 +1,20 @@
+<table>
+<% if session[:user_id] %>
+    <% user = User.find_by_id(session[:user_id]) %>
+    <%= provide(:title,"#{user.username}___信息") %>
+<% end %>
+
+  <tr>
+    <td>登录账号：</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>真实姓名：</td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td>出生日期：</td>
+    <td><%= @user.birthday %></td>
+  </tr>
+</table>
+<%= link_to '修改个人信息', edit_user_path(@user) %>

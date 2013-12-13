@@ -1,0 +1,21 @@
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="#" style="color: #ffffff">❤暗夜商城❤</a>
+    <div class="nav-collapse collapse">
+      <ul class="nav">
+        <li style="color: #ffffff"><%= link_to '主页' , store_url %></li>
+        <li><a href="#">简介</a></li>
+        <li><a href="#">联系</a></li>
+      </ul>
+      <p class="navbar-text pull-right" style="font-size: 15px; color: #ffffff;padding-right: 20px">
+           ❤欢迎您❤&nbsp;&nbsp;
+        <% if session[:user_id] %>
+            <% user = User.find_by_id(session[:user_id]) %>
+             <%=link_to "#{user.username}" , user, class:'btn btn-warning' %>
+        <% else %>
+            <%= link_to '登录账户', login_path %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</header>

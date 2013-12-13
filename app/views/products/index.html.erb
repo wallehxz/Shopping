@@ -1,0 +1,37 @@
+<div id="product_list">
+  <h2>商品列表</h2>
+  <p style="text-align: center"><%= link_to '新商品添加', new_product_path ,class:'btn btn-success' %></p>
+  <table>
+    <% @products.each do |product| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even')  %>">
+          <td><%= image_tag(product.image_url, size:'120x150',:class=>'list_image') %></td>
+          <td class="list_description">
+            <dl>
+              <dt><%= product.title  %></dt><br/>
+              <dd style="width: 400px">&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= product.description %></dd><br/>
+              <dt>￥:<%= product.price %>元</dt>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="list_action">
+            <%= link_to '编辑' , edit_product_path(product) ,class:'btn btn-primary' %>&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to '删除' , product, :confirm=>'确定删除吗？',:method=> :delete,class:'btn btn-danger'%>
+          </td>
+        </tr>
+        <tr>
+          <td style="color: red" colspan="3">
+  ----------------------------------------------------------------------------------------------
+          </td>
+        </tr>
+    <% end %>
+  </table>
+  <p style="text-align: center">
+    <%= will_paginate @products , :previous_label=> '上一页',:next_label=> '下一页'  %>
+  </p>
+</div>
+
+
+

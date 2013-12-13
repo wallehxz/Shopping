@@ -1,0 +1,26 @@
+<% unless cart.line_items.empty? %>
+<table>
+  <h4>购物车</h4>
+  <tr>
+    <td colspan="3">
+      ------------------------------------
+    </td>
+  <%= render(cart.line_items) %>
+  <tr>
+    <td colspan="3">
+  ------------------------------------
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" style="text-align: right">总计￥：<%= @cart.total_price %>元</td>
+  </tr>
+
+<tr>
+    <td><%= button_to '付款', new_order_path , :method => :get,
+                class:'btn btn-success' %></td>
+    <td></td>
+    <td><%= button_to '清空', @cart, class:'btn btn-danger',
+              :method => :delete, :confirm => '确定删除吗？' %></td>
+</tr>
+</table>
+<% end %>

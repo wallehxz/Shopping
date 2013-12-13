@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= yield(:title) %> ❤|❤逗你买</title>
+  <meta http-equiv="Content-type" content="text/rhtml; charset=utf8" />
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <%= render 'shared/header'%>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well" style="text-align: center">
+            <% if session[:user_id] %>
+                <%= link_to '订单中心', orders_path ,class:'btn btn-primary'%>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '产品管理', products_path ,class:'btn btn-primary' %><br><br>
+                <%= link_to '用户列表', users_path ,class:'btn btn-success' %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '账户注销', logout_path , :confirm=>'亲、确定退出吗？',
+                            :method => :delete ,class:'btn btn-success' %><br><br>
+            <% end %>
+            <% if @cart %>
+                <%= hidden_div_if(@cart.line_items.empty?, :id=> 'cart')  do %>
+                    <%= render @cart %>
+                <% end %>
+            <% end %>
+            <a href="#" style="color: #000000">商城主页</a>
+            <a href="#" style="color: #000000">最新动态</a>
+            <a href="#" style="color: #000000">用户帮助</a>
+            <a href="#" style="color: #000000">网站建议</a>
+          </div>
+        </div>
+        <div class="span9">
+          <div class="hero-unit">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>
